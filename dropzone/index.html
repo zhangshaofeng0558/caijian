@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+        <title>多文件上传</title>
+        <link href="./dist/min/dropzone.min.css" rel="stylesheet" type="text/css">
+    </head>
+<body>
+    <div class="dropzone" id="myDropzone" title="点击选择图片"></div>
+    <script src="./jquery.min.js"></script>
+    <script src="./dist/min/dropzone.min.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("#myDropzone", {
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+            },
+            url: "index.php",
+            dictDefaultMessage:'拖动或选择图片',
+            acceptedFiles: ".jpg,.jpeg,.png",
+            dictRemoveFile:'删除',
+            addRemoveLinks: true,
+            method: 'post',
+            filesizeBase: 1024,
+            paramName: "file",
+            sending: function(file, xhr, formData) {
+                formData.append("file_type", 'activity/offline');
+            },
+            success: function (file, response, e) {
+                console.log(file)
+                var res = JSON.parse(response);
+                if (res.code == 200) {
+                    $(file.previewElement).append("<input name='picture[]' type='hidden' value='"+res.data+"'>");
+                    // $(file.previewTemplate).parents('.dropzone').find('.add').remove()
+                    // $(file.previewTemplate).parents('.dropzone').append('<div class="add"><div><img data-dz-thumbnail="" alt="1.jpg" src="/img/add.jpg"></div></div>')
+                } else {
+                    $(file.previewTemplate).children('.dz-error-mark').css('opacity', '1')
+                }
+            },
+            removedfile:function (file) {
+                /*
+                  添加其它逻辑
+                    let id = $(file.previewElement).attr('data-id');
+                    console.log(id);
+                    const $selector = $('.attachment');
+                    $selector.find('table tbody tr[data-id="'+id+'"]').remove();
+                 */
+                if (file.previewElement != null && file.previewElement.parentNode != null) {
+                    file.previewElement.parentNode.removeChild(file.previewElement);
+                }
+            },
+            init:function () {
+                const mockFile = { name: '1.jpg', accepted:true };
+                this.emit("addedfile", mockFile);
+                this.emit("thumbnail", mockFile, '1.jpg');
+                this.emit("complete", mockFile);
+                this.files.push(mockFile);
+                $(mockFile.previewElement).append("<input name='picture[]' type='hidden' value='"+picture[i]+"'>");
+
+            }
+        });
+    </script>
+</body>
+</html>
