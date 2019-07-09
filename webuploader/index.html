@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="./dist/css/webuploader.css">
+	<style>
+		.main-content .first .close {
+			display: none;
+			width: 25px;
+			height: 25px;
+			padding: 5px;
+			z-index: 10;
+			background: url('./dist/image/close.png') no-repeat;
+			background-size: auto;
+			background-size: cover;
+			position: absolute;
+			top: 15px;
+			right: 15px;
+		}
+		.webuploader-pick{
+			width: 50px;
+			height: 50px;
+			margin-left: 10px;
+			cursor: pointer;
+			background: url('./dist/image/addUpload.png') no-repeat center center;
+			background-size: auto;
+			background-size: cover;
+		}
+	</style>
+</head>
+<body>
+<form id="form" enctype="multipart/form-data" method="post">
+
+	<div id="uploader-demo">
+		<!--用来存放item-->
+		<div id="fileList" class="uploader-list"></div>
+		<div id="filePicker"></div>
+	</div>
+</form>
+
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script src="./dist/js/webuploader.js"></script>
+<script src="./dist/js/getting-started.js"></script>
+</body>
+</html>

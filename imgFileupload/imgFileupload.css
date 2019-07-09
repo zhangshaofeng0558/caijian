@@ -1,0 +1,34 @@
+img{
+    border:none;display: block
+}
+.imgFileUploade{
+    width: 100%;
+}
+.imgFileUploade .header{
+    height: 50px;width: 100%;line-height:50px;
+}
+.imgFileUploade .header span{
+    display: block;float:left;
+}
+.imgFileUploade .header span.imgClick{
+    width: 100px;height: 100px;margin-left: 10px;cursor: pointer;
+    background: url(./img/addUpload.png) no-repeat center center;background-size:cover;
+}
+
+.imgFileUploade .imgAll{
+    float: left;
+    position: relative;
+    top: -10px;
+}
+.imgFileUploade .imgAll ul:after{
+    visibility: hidden;  display: block; font-size: 0; content: ".";  clear: both; height: 0
+}
+.imgFileUploade .imgAll li{
+    width: 100px;height: 100px;border:solid 1px #ccc;margin:8px 5px;float: left;position: relative;box-shadow: 0 0 10px #eee;
+}
+.imgFileUploade .imgAll li img{
+    position: absolute;top:0;left:0;width: 100%;height: 100%;display: block;
+}
+.delImg{
+    position: absolute;top:-10px;right:-7px;width: 22px;height: 22px;background: #000;border-radius: 50%;display: block;text-align:  center;line-height: 22px;color:#fff;font-weight: 700;font-style:normal;cursor: pointer;
+}
